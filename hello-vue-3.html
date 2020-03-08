@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生命周期</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 原文: https://cn.vuejs.org/v2/guide/ -->
+    <div id="app" style="border: 1px solid #888888; margin: 50px;">
+        {{name}}
+        <button onclick="vm.name='fish'">Change name</button>
+        <button onclick="vm.$destroy()">destroy</button>
+    </div>
+    <img src="lifecycle.png" />
+    <script>
+        const vm = new Vue({
+            data: {name: "lucien"},
+            el: "#app",
+            beforeCreate: function () {
+                debugger
+                console.log("初始化属性和生命周期")
+            },
+            created: function () {
+                debugger
+                console.log("组件已创建, 属性和生命周期已完成")
+            },
+            beforeMount: function() {
+                debugger
+                console.log("开始挂载组件, 编译template内容，替换#app元素内容")
+            },
+            mounted: function() {
+                debugger
+                console.log("组件挂载完成，页面渲染完成")
+            },
+            beforeUpdate: function() {
+                debugger
+                console.log("组件即将更新")
+            },
+            updated: function () {
+                debugger
+                console.log("组件完成更新")
+            },
+            beforeDestroy: function () {
+                debugger
+                console.log("组件即将销毁")
+            },
+            destroyed: function () {
+                debugger
+                console.log("组件已销毁")
+            }
+
+        })
+    </script>
+</body>
+</html>

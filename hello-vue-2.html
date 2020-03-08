@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据和方法</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 原文: https://cn.vuejs.org/v2/guide/ -->
+    <div id="app">
+        {{name}} -- {{age}}
+
+        <p>请打开控制台！</p>
+    </div>
+    <script>
+        let data = {
+            name : "Lucien",
+            age: 0
+        }
+
+        const vm = new Vue({
+            data: data,
+            el: app
+        })
+
+        console.log("vm.name === data.name = " + (vm.name === data.name))
+
+        vm.$watch("name", function(newValue, oldValue) {
+            console.log("name is changing from " + oldValue + " to " + newValue)
+            // 基于控制台只输出了一次的结果，无论变量改变多少次，$watch只会输出最终结果。
+        })
+
+        data.name = "Fish"
+        console.log("data.name = Fish, then vm.name = " + vm.name)
+
+        vm.name = "Allen"
+        console.log("vm.name = Allen, then data.name = " + data.name)
+
+        console.log("vm 自身的属性使用$前缀来表示， 如vm.$el === document.getElementById(\"#app\") = " + (vm.$el === document.getElementById("app")))
+
+    </script>
+</body>
+</html>
